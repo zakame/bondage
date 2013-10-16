@@ -35,7 +35,6 @@ GetOptions(
     }
 }
 
-my $bouncer = App::Bondage->new( Debug => $debug, Work_dir => $work_dir );
 if (!$debug) {
     require Proc::Daemon;
     eval {
@@ -45,6 +44,7 @@ if (!$debug) {
     chomp $@;
     die "Can't daemonize: $@\n" if $@;
 }
+my $bouncer = App::Bondage->new( Debug => $debug, Work_dir => $work_dir );
 $poe_kernel->run();
 
 sub encrypt_pass {
